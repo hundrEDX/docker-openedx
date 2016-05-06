@@ -28,12 +28,12 @@ RUN \
   pip install setuptools --upgrade
 
 RUN \
-   dd if=/dev/zero of=/swapfile bs=1G count=1
+   dd if=/dev/zero of=/swapfile bs=2G count=1
 RUN \
    chmod 600 /swapfile &&  \
    mkswap /swapfile
-RUN \
-   swapon /swapfile
+#RUN \
+#   swapon /swapfile
    
 WORKDIR /var/tmp/configuration/playbooks
 
