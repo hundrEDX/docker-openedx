@@ -30,8 +30,11 @@ RUN \
 RUN \
    dd if=/dev/zero of=/swapfile bs=1G count=1
 RUN \
-   swapon -a
-
+   chmod 600 /swapfile &&  \
+   mkswap /swapfile
+RUN \
+   swapon /swapfile
+   
 WORKDIR /var/tmp/configuration/playbooks
 
 RUN \
