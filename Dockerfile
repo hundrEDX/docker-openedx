@@ -27,12 +27,12 @@ RUN \
   pip install -r requirements.txt &&  \
   pip install setuptools --upgrade
 
-# WORKDIR /var/tmp/configuration/playbooks
+WORKDIR /var/tmp/configuration/playbooks
 
-# RUN \
-#   dd if=/dev/zero of=/swapfile bs=1G count=1
-# RUN \
-#   swapon -a && \
-#   ansible-playbook -c local ./edx_sandbox.yml -i "localhost,"
+RUN \
+  dd if=/dev/zero of=/swapfile bs=1G count=1
+RUN \
+  swapon -a && \
+  ansible-playbook -c local ./edx_sandbox.yml -i "localhost,"
 
-#EXPOSE 80 80 18010
+EXPOSE 80 80 18010
