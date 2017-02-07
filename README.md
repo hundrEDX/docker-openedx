@@ -1,2 +1,2 @@
-# docker-openedx
-Open Edx in single docker container
+# edxapp-eucalyptus-rg
+Open Edx edxapp docker container
