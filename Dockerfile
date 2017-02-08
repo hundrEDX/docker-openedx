@@ -43,8 +43,8 @@ RUN pip install -r requirements/edx/pre.txt  \
     && echo $REQUIREMENT_FILES | sed 's/ /\n/g' | xargs -L1 -I{}  \
           pip install -q  \
                       --disable-pip-version-check   \
-                      -r requirements/edx/{}.txt  \
-    && bundle install
+                      -r requirements/edx/{}.txt  
+    # && bundle install
 
 #-------------------------------------
 # RUN pip install packaging==16.8
