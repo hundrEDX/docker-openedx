@@ -1,4 +1,4 @@
-FROM ubuntu:12.04
+FROM raccoongang/edxapp:eucalyptus-rg-prep
 
 MAINTAINER Dmitry Gamanenko <dmitry.gamanenko@raccoongang.com>
 
