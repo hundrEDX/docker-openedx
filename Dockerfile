@@ -47,29 +47,29 @@ RUN apt-get install libffi-dev
 #     && bundle install
 
 
-RUN pip install packaging==16.8
-ADD sed.sh /tmp/sed.sh
-RUN /tmp/sed.sh
+# RUN pip install packaging==16.8
+# ADD sed.sh /tmp/sed.sh
+# RUN /tmp/sed.sh
 
 RUN pip install -r requirements/edx/pre.txt
 
 RUN pip install -r requirements/edx/paver.txt
-RUN pip install -r requirements/edx/base.txt
+# RUN pip install -r requirements/edx/base.txt
 
-RUN pip install -r requirements/edx/github.txt
-RUN pip install -r requirements/edx/local.txt
+# RUN pip install -r requirements/edx/github.txt
+# RUN pip install -r requirements/edx/local.txt
 
-RUN pip install -r requirements/edx/post.txt
+# RUN pip install -r requirements/edx/post.txt
 
-RUN bundle install
+# RUN bundle install
 
-COPY envs /edx/app/edxapp/buildenvs
-RUN cd /edx/app/edxapp/  \
-    && bash -c 'ln -s buildenvs/{lms,cms}.{env,auth}.json .'  \
-    && bash -c 'cd edx-platform && paver install_prereqs'  \
-    && bash -c 'rm {lms,cms}.{env,auth}.json'  \
-    && bash -c 'ln -s devenvs/{lms,cms}.{env,auth}.json .'  \
-    && rm edx-platform  \
-    && ln -sd edx-platform-devcode edx-platform
+# COPY envs /edx/app/edxapp/buildenvs
+# RUN cd /edx/app/edxapp/  \
+#     && bash -c 'ln -s buildenvs/{lms,cms}.{env,auth}.json .'  \
+#     && bash -c 'cd edx-platform && paver install_prereqs'  \
+#     && bash -c 'rm {lms,cms}.{env,auth}.json'  \
+#     && bash -c 'ln -s devenvs/{lms,cms}.{env,auth}.json .'  \
+#     && rm edx-platform  \
+#     && ln -sd edx-platform-devcode edx-platform
 
 
