@@ -38,14 +38,30 @@ RUN git apply /tmp/apt-packages.gitpatch  \
 
 RUN apt-get install libffi-dev
 
-ENV REQUIREMENT_FILES 'github local base post paver'
-RUN pip install -r requirements/edx/pre.txt  \
-    && echo $REQUIREMENT_FILES | sed 's/ /\n/g' | xargs -L1 -I{}  \
-          pip install -q  \
-                      --disable-pip-version-check   \
-                      -r requirements/edx/{}.txt  \
-    && bundle install
+# ENV REQUIREMENT_FILES 'github local base post paver'
+# RUN pip install -r requirements/edx/pre.txt  \
+#     && echo $REQUIREMENT_FILES | sed 's/ /\n/g' | xargs -L1 -I{}  \
+#           pip install -q  \
+#                       --disable-pip-version-check   \
+#                       -r requirements/edx/{}.txt  \
+#     && bundle install
 
+ADD sed.sh /tmp/sed.sh
+
+RUN /tmp/sed.sh
+RUN pip install -r requirements/edx/pre.txt
+RUN /tmp/sed.sh
+RUN pip install -r requirements/edx/paver.txt
+RUN /tmp/sed.sh
+RUN pip install -r requirements/edx/base.txt
+RUN /tmp/sed.sh
+RUN pip install -r requirements/edx/github.txt
+RUN /tmp/sed.sh
+RUN pip install -r requirements/edx/local.txt
+RUN /tmp/sed.sh
+RUN pip install -r requirements/edx/post.txt
+RUN /tmp/sed.sh
+RUN bundle install
 
 COPY envs /edx/app/edxapp/buildenvs
 RUN cd /edx/app/edxapp/  \
