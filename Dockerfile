@@ -46,21 +46,21 @@ RUN apt-get install libffi-dev
 #                       -r requirements/edx/{}.txt  \
 #     && bundle install
 
-ADD sed.sh /tmp/sed.sh
 
+RUN pip install packaging==16.8
+ADD sed.sh /tmp/sed.sh
 RUN /tmp/sed.sh
+
 RUN pip install -r requirements/edx/pre.txt
-RUN /tmp/sed.sh
+
 RUN pip install -r requirements/edx/paver.txt
-RUN /tmp/sed.sh
 RUN pip install -r requirements/edx/base.txt
-RUN /tmp/sed.sh
+
 RUN pip install -r requirements/edx/github.txt
-RUN /tmp/sed.sh
 RUN pip install -r requirements/edx/local.txt
-RUN /tmp/sed.sh
+
 RUN pip install -r requirements/edx/post.txt
-RUN /tmp/sed.sh
+
 RUN bundle install
 
 COPY envs /edx/app/edxapp/buildenvs
