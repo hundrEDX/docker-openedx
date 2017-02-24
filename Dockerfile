@@ -1,5 +1,5 @@
 
-FROM ubuntu:12.04
+FROM ubuntu:14.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -28,7 +28,7 @@ RUN \
   pip install setuptools --upgrade
 
 RUN \
-   dd if=/dev/zero of=/swapfile bs=2G count=1
+   dd if=/dev/zero of=/swapfile bs=1G count=1
 RUN \
    chmod 600 /swapfile &&  \
    mkswap /swapfile
